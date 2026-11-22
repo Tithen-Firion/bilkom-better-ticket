@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta http-equiv="content-type" content="text/html; charset=utf-8"/>
+	<title>Bilkom better ticket</title>
+</head>
+<body>
+  <p>Step 1, add following bookmarklet to your bookmarks: <a href="javascript:(function()%7Bconst%20embed%20%3D%20document.querySelector(%22%23embededTicketObject%22)%3B%0Aif(embed%20!%3D%3D%20null)%20document.location%20%3D%20embed.data%3B%0Aelse%20%7B%0A%20%20const%20script%20%3D%20document.createElement(%22script%22)%3B%0A%20%20script.src%20%3D%20%22https%3A%2F%2Ftithen-firion.github.io%2Fbilkom-better-ticket%2Fbilkom.js%22%3B%0A%20%20document.body.append(script)%3B%0A%7D%7D)()%3B">Make better ticket</a></p>
+  <!--
+const embed = document.querySelector("#embededTicketObject");
+if(embed !== null) document.location = embed.data;
+else {
+  const script = document.createElement("script");
+  script.src = "https://tithen-firion.github.io/bilkom-better-ticket/bilkom.js";
+  document.body.append(script);
+}
+  -->
+  <p>Step 2, go to Bilkom and open tab with tickets</p>
+  <p>Step 3, expand the ticket you want to use</p>
+  <p>Step 4, run the bookmarklet twice (on desktop just click on it, on mobile type the name in the address bar and tap it)</p>
+</body>
+</html>
