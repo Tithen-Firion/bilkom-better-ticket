@@ -1,13 +1,30 @@
-window.fail = reason => {
+(async () => {
+
+const fail = reason => {
   alert(reason);
   throw reason;
 };
-window.uniquePush = (array, item, alternative) => {
+
+let doc = null;
+{
+  const embed = document.querySelector("#embededTicketObject");
+  if(embed === null) return;
+  try {
+    const response = await fetch(embed.data);
+    const parser = new DOMParser();
+    doc = parser.parseFromString(await response.text(), "text/html");
+  }
+  catch(error) {
+    fail(error);
+  }
+}
+
+const uniquePush = (array, item, alternative) => {
   if(!array.includes(item)) array.push(item);
   else if(typeof alternative !== "undefined") uniquePush(array, alternative);
   else fail("uniquePush error, array already has item: " + item);
 };
-window.parseDate = (dateText, timeText, savedYear) => {
+const parseDate = (dateText, timeText, savedYear) => {
   const [day, month, year] = dateText.split(".");
   if(typeof year !== "undefined") savedYear = parseInt(year);
   const [hours, minutes] = timeText.split(":");
@@ -16,16 +33,16 @@ window.parseDate = (dateText, timeText, savedYear) => {
     savedYear,
   ];
 };
-window.formatDate = date => date.toLocaleDateString("en-CA", {day:"2-digit", month: "2-digit", year: "numeric"});
-window.formatTime = date => date.toLocaleTimeString("en-US", {hour:"2-digit", minute: "2-digit", hour12: false});
+const formatDate = date => date.toLocaleDateString("en-CA", {day:"2-digit", month: "2-digit", year: "numeric"});
+const formatTime = date => date.toLocaleTimeString("en-US", {hour:"2-digit", minute: "2-digit", hour12: false});
 
-window.travel = [];
+const travel = [];
 
 // parsing the travel plan
 {
   // parsing headers
   const headers = [];
-  const travelTable = document.querySelector(".travel-plane-table");
+  const travelTable = doc.querySelector(".travel-plane-table");
   for(const header of travelTable.querySelectorAll(":scope > thead > tr:first-child > td")) {
     let columns = header.getAttribute("colspan");
     if(columns === null) columns = "1";
@@ -74,7 +91,7 @@ window.travel = [];
 
 // parsing tickets
 {
-  for(const ticket of document.querySelectorAll(".ticket")) {
+  for(const ticket of doc.querySelectorAll(".ticket")) {
     const sellers = {};
     const allSellers = Array.from(ticket.querySelectorAll(".carrier-logo"));
     const mainSeller = allSellers.shift().src;
@@ -220,6 +237,9 @@ button {
   vertical-align: text-top;
 }
 `;
+  for(const el of Array.from(document.head.querySelectorAll("script,style,link"))) {
+    el.remove();
+  }
   document.head.append(stylesheet);
   document.body.innerHTML = "";
 
@@ -281,3 +301,5 @@ for(const [index, button] of Object.entries(document.querySelectorAll(".ticket-b
 catch(error) {
   alert(error);
 }
+
+})();
