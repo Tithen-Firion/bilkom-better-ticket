@@ -5,16 +5,27 @@
 	<title>Bilkom better ticket</title>
 </head>
 <body>
-  <p>Step 1, add following bookmarklet to your bookmarks: <a href="javascript:(function()%7Bif(document.querySelector(%22%23embededTicketObject%22)%20!%3D%3D%20null)%20%7B%0A%20%20const%20script%20%3D%20document.createElement(%22script%22)%3B%0A%20%20script.src%20%3D%20%22https%3A%2F%2Ftithen-firion.github.io%2Fbilkom-better-ticket%2Fbilkom.js%22%3B%0A%20%20document.body.append(script)%3B%0A%7D%7D)()%3B">Make better ticket</a></p>
+  <p>Step 1, add following bookmarklet to your bookmarks: <a href="javascript:(function()%7Bif(document.querySelector(%22%23embededTicketObject%22)%20!%3D%3D%20null)%20%7B%0A%20%20const%20script%20%3D%20document.createElement(%22script%22)%3B%0A%20%20script.src%20%3D%20%22https%3A%2F%2Ftithen-firion.github.io%2Fbilkom-better-ticket%2Fbilkom.js%22%3B%0A%20%20script.integrity%20%3D%20%22sha384-1fJt%2Fca3jWLLxXJVRdVg24wdnbAcg9samxwU2Fk3f6Ed9guPDIVx3nL5nnY%2FDF1t%22%3B%0A%20%20script.crossorigin%20%3D%20%22anonymous%22%3B%0A%20%20document.body.append(script)%3B%0A%7D%7D)()%3B">Make better ticket</a></p>
   <!--
 if(document.querySelector("#embededTicketObject") !== null) {
   const script = document.createElement("script");
   script.src = "https://tithen-firion.github.io/bilkom-better-ticket/bilkom.js";
+  script.integrity = "sha384-1fJt/ca3jWLLxXJVRdVg24wdnbAcg9samxwU2Fk3f6Ed9guPDIVx3nL5nnY/DF1t";
+  script.crossorigin = "anonymous";
   document.body.append(script);
 }
   -->
   <p>Step 2, go to Bilkom and open tab with tickets</p>
   <p>Step 3, expand the ticket you want to use</p>
   <p>Step 4, run the bookmarklet (on desktop just click on it, on mobile type the name in the address bar and tap it)</p>
+  <hr>
+  <p>You can generate that bookmarklet yourself. Head over to the <a href="https://caiorss.github.io/bookmarklet-maker/" target="_blank">Bookmarklet Maker</a> website and paste this code:</p>
+  <pre>if(document.querySelector("#embededTicketObject") !== null) {
+  const script = document.createElement("script");
+  script.src = "https://tithen-firion.github.io/bilkom-better-ticket/bilkom.js";
+  script.integrity = "sha384-1fJt/ca3jWLLxXJVRdVg24wdnbAcg9samxwU2Fk3f6Ed9guPDIVx3nL5nnY/DF1t";
+  script.crossorigin = "anonymous";
+  document.body.append(script);
+}</pre>
 </body>
 </html>
